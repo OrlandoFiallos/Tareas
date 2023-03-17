@@ -60,3 +60,10 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin     
+    
+class Tasks(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField(max_length=255, blank=True, null=True)
+    due_date = models.DateTimeField()
+    completed = models.BooleanField(default=False)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
